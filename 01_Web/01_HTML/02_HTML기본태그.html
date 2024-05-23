@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>제목 글자 태그 1</h1>
+    <h2>제목 글자 태그 2</h2>
+    <h3>제목 글자 태그 3</h3>
+    <h4>제목 글자 태그 4</h4>
+    <h5>제목 글자 태그 5</h5>
+    <h6>제목 글자 태그 6</h6>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+      asperiores?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat odit
+      voluptate ab. Quasi, aliquid est beatae asperiores et non dolorem, neque,
+      itaque rerum minima minus! Consectetur nesciunt tempora ut architecto.
+    </p>
+  </body>
+</html>
+
+------------------------------------------------------------
+<!-- 앵커태그 a -->
+하이퍼택스트 : 사용자의 선택에 따라 관련한 특징 정보로 이동할 수 있도록 조직된
+문서
+
+<body>
+  <a href="https://www.google.com">Google</a>
+  <a href="https://www.naver.com">Naver</a>
+  <a href="https://www.daum.net">Daum</a>
+</body>
+
+<a href="이동할 주소">출력글자</a>
+
+<!-- 본문에서의 내용. -->
+본문 내용에서도 a를 통해 이동이 가능함.
+
+<body>
+  <a href="#alpha">Alpha</a>
+  <a href="#beta">Beta</a>
+  <a href="#gamma">Gamma</a>
+  <hr />
+  <h1 id="alpha">Alpha</h1>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius illo placeat
+    illum. Officia labore, earum cupiditate vitae laboriosam reiciendis neque
+    similique ea libero magni rerum hic assumenda incidunt omnis. Odit.
+  </p>
+  <h2 id="beta">Beta</h2>
+  <p>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, cumque
+    animi iste esse, officia blanditiis magni ad est a labore accusantium nam,
+    ex quas porro maxime. Distinctio doloremque maiores totam?
+  </p>
+  <h3 id="gamma">Gamma</h3>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+    architecto suscipit omnis nostrum, eveniet odit eius sint inventore esse
+    sequi illo soluta distinctio et ab sed, culpa animi tempore delectus?
+  </p>
+</body>
+
++ id 속성이 중복되면 먼저 나오는 태그로 이동,
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+<!-- 네비게이션 메뉴, list, ul, ol이 존재함 -->
+
+1. 순서가 없는
+<ul></ul>
+
+<body>
+  <ul>
+    <li>사과</li>
+    <li>오렌지</li>
+    <li>바나나</li>
+  </ul>
+</body>
+
+2. 순서가 있는
+<ol></ol>
+
+<body>
+  <ol>
+    <li>사과</li>
+    <li>바나나</li>
+    <li>오렌지</li>
+  </ol>
+</body>
+
+3. 합쳐서 만들 수도 있음.
+
+<body>
+  <ul>
+    <li>
+      <h1><b>legends</b></h1>
+      <ol>
+        <li>jordan</li>
+        <li>lebron james</li>
+        <li>kobe</li>
+      </ol>
+    </li>
+    <li>
+      <h1><i>teams</i></h1>
+      <ul>
+        <li>lakers</li>
+        <li>bulls</li>
+        <li>celtics</li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+<!-- 표만들기 -->
+table : 표삽입 tr : 표 행에 삽입 th : 표 제목 셀에 생성 td : 표의 일반 셀 생성
+
+<body>
+  <table border="1">
+    <thead>
+      <tr>
+        <th></th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1교시</td>
+        <td>농구</td>
+        <td>축구</td>
+        <td>배구</td>
+        <td>야구</td>
+        <td>족구</td>
+      </tr>
+      <tr>
+        <td>2교시</td>
+        <td>수영</td>
+        <td>배형</td>
+        <td>접형</td>
+        <td>잠형</td>
+        <td>자유형</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+// 여기서 테이블 태그의 속성을 변경할 수 있음. th와 td는 colspan과 rowspan으로
+너비와 높이를 지정가능함.
+
+<body>
+  <table border="1">
+    <tr>
+      <th colspan="2">지역별 홍차</th>
+    </tr>
+    <tr>
+      <th rowspan="3">중국</th>
+      <td>정산소종</td>
+    </tr>
+    <tr>
+      <td>기문</td>
+    </tr>
+    <tr>
+      <td>운남</td>
+    </tr>
+    <tr>
+      <th rowspan="4">인도 및 스리랑카</th>
+      <td>정산소종</td>
+    </tr>
+    <tr>
+      <td>실론</td>
+    </tr>
+    <tr>
+      <td>다질링</td>
+    </tr>
+    <tr>
+      <td>닐기리</td>
+    </tr>
+  </table>
+</body>
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ2ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+<!-- 미디어 태그 -->
+: img태그는 내용을 가질 수 없는 태그지만, audio와 video태그를 가질 수 있음.
+
+<img src="" alt="">
+src는 이미지의 경로 / alt : 이미지가 나오지 않을 때 글자
+
+<body>
+    <img src="Penguins" alt="펭귄" width="300">
+    <img src="Nothing" alt="그림이 존재하지 않습니다." width="300">
+</body>
+
+<body>
+    <audio src="kalimba.mp3" controls="controls"></audio>
+</body>
+
+웹브라우저마다 지원하는 미디어 포맷이 다른경우
+
+<body>
+    <audio controls="controls">
+        <source src="kalimba.mp3" type="audio/mp3">
+        <source src="kalimba.ogg" type="audio/ogg">
+</body>
+
+동영상을 불러오는 동안 다른 이미지 보여주기 poster 태그 사용
+
+<body>
+    <video controls="controls">
+        <source src='kalimba.mp4'type=video/mp4>
+        <source src="kalimba.webm" type="video/webm">
+    </video>
+</body>
