@@ -1,0 +1,226 @@
+<!-- 컴포넌트 심화 -->
+
+
+
+<!--  1. 스타일 처리
+    :style =""
+    :class =""
+    1) 전역 CSS스타일   -전역 CSS
+                        -컴포넌트 한정 css
+    전역: /assets/main.css(main.js에서 임포트하면 전역으로 가능)
+    *다른 컴포넌트 간의 스타일과 충돌 피하기*
+    - 해당 컴퍼넌트에만 적용되게 끔 제어하는 것 : 범위 css
+
+    2) 범위 CSS
+    : 컴포넌트가 렌더링 하는 요소에 특성 기반의 추가적인 식별자 부여
+    <div class ="child">
+
+        App.vue
+template
+    div
+        child1/
+        child2/
+        child3/
+    div
+template
+
+    임포트 child3이 덮어 씌우는 경우가 발생함. = 컴포넌트에 한정되면 좋겠다.
+    **<style>을 <style scoped>로 변경함.(일반적)
+    style scoped사용시 data-v-8257de2c가 생김.(컴포넌트 아이디)
+-> css의 클래스 명이 바귐.    
+
+    3)CSS모듈
+    :CSS스타일을 마치 객체처럼  처리
+    <style module>로 지정.
+        =>프로그램, 템플릿파트에서 핸들링이 가능함. $style로 접근.(객체화)
+
++ Vue 생명주기, 
+beforeCreate create는 메모리상에 기록임. (화면에 나오지 않음.)
+mount
+vif 트루면 마운트, 아니면 dom에서 제거 : mount에 관여지, 나오냐 안나오냐 관리임 삭제가 아님.
+
+    create() {
+        console.log(this.$style)
+    }
+    템플릿 div에서 class 배정도 필요
+
+
+=scoped, module 선택사용
+
+     -->
+
+
+
+
+<!-- 2. 슬롯 
+
+    1) 슬롯(slot)
+    : 부모컴퍼넌트에서 자식컴퍼넌트로 템플릿 정보를 전달
+    (데이터 정보 전달시 porps, 템플릿 전달시 slot)
+    = <child/>컴포넌트 사용시 내용없이  단일태그로 전달됨.
+        속성바인딩으로 정보전달.
+    
+    = <child>여기에 정보를 적겠다.<child/> 위치를 잡아주는 역할이 slot(띄어넣는곳)
+                                                                        이것이 e로 넘어감
+    @change(선택이 바뀔때)='$emit('check-changed', {id, checked: $event.target.checked})'    
+select radio check에서 사용                                     checkedbox의 현재 체크 상태 데이터를 넘기겠다.
+
+    v-if 참일때
+    v-else 거짓일때.
+(+v-if / vif velse / vif, else if, else if, else if, vesle )
+
+    find(객체 자체를 리턴)
+    fndIndex(인덱스를 리턴)
+
+    let item = this.item.find((item)=> )
+    관련된 것만 렌더링이 발생됨.
+
+=> <checkbox1/>로 기술하여도 무방.
+
+모양, 자식이 결정하는 경우?. conponents
+
+
+        슬롯의 사용!
+
+    CheckBox2.vue
+
+    checkBox는 자식이 input은 부모가 결정헀었음,
+    <slot>기본값<slot/>
+        props에서 name이 들어갈 필요가 없음. 
+
+    부모태그에서 checkBox에 내용을 입력함. 
+    spna v-if='item.checked'.....
+    라벨이 어떻게 최종적으로 선택되는가는 자식의 slot으로 결정됨. 
+=> 가장 기본의 형태.
+만약, <checkBox><checkBox/>시 기본값 item이 출력..
+
+데코레이션을 다르게 가져가고 싶다면, 그전에는 불가능함. 
+slot사용시 라벨 파트에 대한 커스터마이징이 가능. 
+
+템플릿을 부모가 일부 결정하겠다. 
+->범용 컴포넌트 만들떄 보통 사용함. (재사용이 여러 파트에서 사용할때)
+
+
+    2)명명된 슬롯
+슬롯을 여러개 응용하고싶을 경우? 부모에게 3개의 전달이 필요.
+어디에 배치할 것인지 지정할 필요가 있음. 
+: 이름을 배정하겠다.
+
+각 영역에 slot name=""
+v-slot=
+    input앞에 icon, 뒤에 slot
+
+    템플릿으로 두가지 v-slot을 배정
+    <template v-slot: icon>
+    class-'far fa-grin-dwfw' <-폰트어썸사용
+
+    layout에 용용
+    부모에서 설정하고, css에서 설정
+
+    3)범위 슬롯 (scoped slot)
+<tmeplate v-slot: default>
+    구성하는데, 자식의 데이터가 필요. slot의 한해서 자식의 데이터를 사용하게함
+    (자식의 데이터가 주입될 수 있음.)
+
+    자식의 상태에따라 부모의 상태가 변해야할때.
+
+<CheckBoxList :itmes='items'>
+    <template v-slot:default="p1">
+
+이름이 없으면 default slot
+scoped slot 특이 케이스
+-->
+
+<!-- 3. 동적 컴포넌트 
+
+: 화면의 동일한 위치에 여러 컴포넌트를 표현해야하는 경우 <componet>요소를 템플릿에 작성
+: is 특성 값으로 어떤 컴포넌트를 그 위치에 나타낼지 결정
+: 컴포넌트 변경시, 정적 컴포넌트인 경우 include속성으로 캐싱
+
+다르게 나오는 이유는 .active 클래스가 사용되기 때문.
+페이지 목록에서도 사용됨.
+
+tap.id === currentTab
+
+keep-alive include --- 레이테만 해전은 캐싱하지 않겠다. 
+언제 keep-alive를 사용하는가?:내용이 변하지 않는것. ex)회사소개, 조직도 인사말 등등
+->상황에 따라 변하는 것 (다이나믹 페이지, )
+
+
+-->
+
+
+<!-- 4. 컴포넌트에서의 v-model 디렉티브
+
+    1)사용자 정의 v-model만들기(보통 input, select의 form요소에서 사용)
+<child-component v-model:message="parentMessage"> 부모컴포넌트
+자식 컴포넌트에서는 meessage를 정의함. 
+
+이벤트명은 반드시 'update:속성명' 형식을 사용함.
+@input=emit('update:message',$event.target.value)'
+
+-->
+
+<!-- 5.provide, inject를 이용한 공용 데이터 사용(데이터뿐만 아니라 함수도 가능)
+
+    props를 이용한 정보전달. 
+    계층 구조가 복잡해지면 -> 계층 구조를 따라 연속적으로 속성을 전달해야하는 문제 발생
+    (형제간에는 전달 불가능)
+    => 부모에서 정보제공, 자식은 받음(inject)
+
+:song='songs'
+
+    doneCount : true가 몇개인가?????
+
+    doneCount: computed(() => 
+    return this.song.filter(
+        (s) => s.done ===true).length
+    )
+
+    계산된 속성 computed:$ 
+    챕터
+
+    filter(함수) t/r 리턴
+-->
+
+
+
+<!-- 6.teleport
+: 돔의 위치가 변했다. 순간이동 
+
+슬롯과의 차이점. 슬롯은 지정된 곳으로, 텔포 id
+
+
+
+
+ -->
+
+
+
+<!--
+    7.비동기 컴포넌트
+ :서버에 요청하여 응답을 받음.
+
+
+ 슬롯 : 부모가 결정해서 커스터마이징하겠다. 배치는 자식이함. 
+  자식name을 통해 각영역에 슬롯명 지정.
+  부모v-slot을 통해 어떤 템플릿인지 지정.
+ 템플릿은 형태만 맞춤 dom에는 빠짐.
+
+ 범용 componenet 재사용. 
+ 
+ 동적컴포넌트 : 
+ is속성에 컴포넌트명을 주면, 그 컴포넌트로 여기에 넣어주겠다. 변수처리
+
+ v-model 디렉티브 : 사용자 정의 v-model
+ 
+ provide inject 실제 프로젝트에서 써먹음.
+ 멀리떨어져있는 컴포넌트간의 정보를 주고 받을때, 
+ provide(함수) 객체지원,
+
+
+
+ TIp
+ 1. 코딩을 빨리하는 방법.
+
+-->

@@ -7,9 +7,9 @@
       <div class="card-body">
         <InputTodo @add-todo="addTodo" />
         <TodoList
-          :todolist="todolist"
+          :todoList="todolist"
           @delete-todo="deleteTodo"
-          @toggle-Completed="toggleCompleted"
+          @toggle-completed="toggleCompleted"
         />
       </div>
     </div>
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import TodoList from './components/TodoList.vue';
-import InputTodo from './components/InputTodo.vue';
+import TodoList from '../components/TodoList.vue';
+import InputTodo from '../components/InputTodo.vue';
 
 export default {
   name: 'App',
