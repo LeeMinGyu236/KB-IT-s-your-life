@@ -9,7 +9,7 @@
         <TodoList
           :todolist="todolist"
           @delete-todo="deleteTodo"
-          @toggle-Completed="toggleCompleted"
+          @toggle-completed="toggleCompleted"
         />
       </div>
     </div>
@@ -40,19 +40,20 @@ export default {
     addTodo(todo) {
       if (todo.length >= 2) {
         this.todolist.push({
-          id: new Date().getTime(),
+          id: Date.now() + Math.random(), // 타임스탬프와 랜덤 숫자를 조합하여 고유 ID 생성
           todo: todo,
           completed: false,
         });
       }
     },
     deleteTodo(id) {
-      let index = this.todolist.findIndex((item) => id === item.id);
-      this.todolist.splice(index, 1);
+      this.todolist = this.todolist.filter((item) => item.id !== id);
     },
     toggleCompleted(id) {
-      let index = this.todolist.findIndex((item) => id === item.id);
-      this.todolist[index].completed = !this.todolist[index].completed;
+      const todo = this.todolist.find((item) => item.id === id);
+      if (todo) {
+        todo.completed = !todo.completed;
+      }
     },
   },
 };

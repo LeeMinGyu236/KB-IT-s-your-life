@@ -15,23 +15,29 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+export default {
+  name: 'TodoListItem',
+  cosnt props = defineProps({
+    todoItem : {type : Object, required : true}
+  })
+  const emit = defineEmits({'delete-todo', this.todoItem.id})
 
-const props = defineProps({
-  todoItem: {
-    type: Object,
-    required: true,
+
+
+  props: {
+    todoItem: {
+      type: Object,
+      required: true,
+    },
   },
-});
-
-const emit = defineEmits(['toggle-completed', 'delete-todo']);
-
-const toggleCompleted = () => {
-  emit('toggle-completed', props.todoItem.id);
-};
-
-const deleteTodo = () => {
-  emit('delete-todo', props.todoItem.id);
+  methods: {
+    toggleCompleted() {
+      this.$emit('toggle-completed', this.todoItem.id);
+    },
+    deleteTodo() {
+      this.$emit('delete-todo', this.todoItem.id);
+    },
+  },
 };
 </script>
 
